@@ -1,0 +1,132 @@
+[
+  {
+    "teamId": "arsenal001",
+    "name": "Arsenal FC",
+    "founded": "1886-10-01",
+    "highlightLink": "https://www.youtube.com/watch?v=abcd1234",
+    "leagues": ["Premier League", "FA Cup", "Europa League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Emirates_Stadium_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7f/Emirates_Stadium_inside_2022.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "barca002",
+    "name": "FC Barcelona",
+    "founded": "1899-11-29",
+    "highlightLink": "https://www.youtube.com/watch?v=efgh5678",
+    "leagues": ["La Liga", "Copa del Rey", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/b/b3/Camp_Nou_Panoramic.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Camp_Nou_inside_2019.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "realmadrid003",
+    "name": "Real Madrid CF",
+    "founded": "1902-03-06",
+    "highlightLink": "https://www.youtube.com/watch?v=ijkl9012",
+    "leagues": ["La Liga", "UEFA Champions League", "Copa del Rey"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Santiago_Bernabeu_Stadium_2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fc/Santiago_Bernab%C3%A9u_stadium_2023.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "bayern004",
+    "name": "FC Bayern Munich",
+    "founded": "1900-02-27",
+    "highlightLink": "https://www.youtube.com/watch?v=mnop3456",
+    "leagues": ["Bundesliga", "DFB-Pokal", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/1/1f/FC_Bayern_Munich_logo_%282017%29.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/d/d9/Allianz_Arena_2020.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/2b/Allianz_Arena_inside_2022.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "juventus005",
+    "name": "Juventus FC",
+    "founded": "1897-11-01",
+    "highlightLink": "https://www.youtube.com/watch?v=qrst7890",
+    "leagues": ["Serie A", "Coppa Italia", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/3/3e/Juventus_Turin.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/2/2a/Allianz_Stadium_Turin_2017.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e3/Juventus_Stadium_inside_2021.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "psg006",
+    "name": "Paris Saint-Germain",
+    "founded": "1970-08-12",
+    "highlightLink": "https://www.youtube.com/watch?v=uvwx4321",
+    "leagues": ["Ligue 1", "Coupe de France", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/9/9a/Parc_des_Princes_2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/55/PSG_Parc_des_Princes_inside.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "liverpool007",
+    "name": "Liverpool FC",
+    "founded": "1892-06-03",
+    "highlightLink": "https://www.youtube.com/watch?v=abcd5678",
+    "leagues": ["Premier League", "FA Cup", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/0/0c/Anfield_2023.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7c/Anfield_inside_2021.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "chelsea008",
+    "name": "Chelsea FC",
+    "founded": "1905-03-10",
+    "highlightLink": "https://www.youtube.com/watch?v=efgh3456",
+    "leagues": ["Premier League", "FA Cup", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/9/9a/Stamford_Bridge_2020.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5b/Stamford_Bridge_inside_2021.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "inter009",
+    "name": "Inter Milan",
+    "founded": "1908-03-09",
+    "highlightLink": "https://www.youtube.com/watch?v=ijkl5678",
+    "leagues": ["Serie A", "Coppa Italia", "UEFA Champions League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/0/05/FC_Internazionale_Milano_2021.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/San_Siro_2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/59/San_Siro_inside_2020.jpg"
+    ],
+    "reviewIds": []
+  },
+  {
+    "teamId": "manutd010",
+    "name": "Manchester United",
+    "founded": "1878-03-05",
+    "highlightLink": "https://www.youtube.com/watch?v=mnop6789",
+    "leagues": ["Premier League", "FA Cup", "UEFA Europa League"],
+    "logo": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "stadiumImages": [
+      "https://upload.wikimedia.org/wikipedia/commons/5/5d/Old_Trafford_2022.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/a9/Old_Trafford_inside_2021.jpg"
+    ],
+    "reviewIds": []
+  }
+]

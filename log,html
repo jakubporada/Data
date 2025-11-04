@@ -1,22 +1,33 @@
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-const routes: Routes = [
-  { path: '', component: AppComponent },      // your main page
-  { path: 'login', component: LoginComponent } // login page
-];
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routes)
-  ],
-  declarations: [
-    AppComponent,
-    LoginComponent
-  ],
-  bootstrap: [AppComponent]
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AppModule {}
+export class LoginComponent {
+  loginForm: FormGroup;
+  submitted = false;
+
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) return;
+
+    // For now, just log the form values
+    console.log('Login successful', this.loginForm.value);
+    alert(`Welcome, ${this.loginForm.value.username}!`);
+  }
+}

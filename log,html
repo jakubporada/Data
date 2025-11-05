@@ -1,384 +1,217 @@
-/* ===== BASE STYLES ===== */
-.login-page {
-  @apply min-h-screen relative overflow-hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-/* ===== ANIMATED BACKGROUND ===== */
-.background-wrapper {
-  @apply absolute inset-0;
-  background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 25%, #0f1419 50%, #1a1f2e 75%, #0a0e1a 100%);
-}
-
-.gradient-orb {
-  @apply absolute rounded-full blur-3xl opacity-30;
-  animation: float 8s ease-in-out infinite;
-}
-
-.orb-1 {
-  @apply w-96 h-96 bg-red-600/20;
-  top: -10%;
-  right: 10%;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  @apply w-[500px] h-[500px] bg-red-800/15;
-  bottom: -15%;
-  left: -5%;
-  animation-delay: 2s;
-}
-
-.orb-3 {
-  @apply w-80 h-80 bg-red-700/10;
-  top: 40%;
-  right: -10%;
-  animation-delay: 4s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-}
-
-.grid-overlay {
-  @apply absolute inset-0 opacity-10;
-  background-image: 
-    linear-gradient(rgba(220, 38, 38, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(220, 38, 38, 0.1) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 20s linear infinite;
-}
-
-@keyframes gridMove {
-  0% { background-position: 0 0; }
-  100% { background-position: 60px 60px; }
-}
-
-/* ===== CONTENT WRAPPER ===== */
-.content-wrapper {
-  @apply relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-12;
-}
-
-/* ===== LOGO SECTION ===== */
-.logo-container {
-  @apply text-center mb-12;
-  animation: fadeInDown 1s ease-out;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.logo-shield {
-  @apply relative inline-block mb-8;
-}
-
-.shield-glow {
-  @apply absolute inset-0 bg-gradient-to-br from-red-600 to-red-800 rounded-3xl blur-2xl opacity-40;
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
-}
-
-.shield-icon {
-  @apply relative w-24 h-24 text-red-600;
-  filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.6));
-}
-
-.company-title {
-  @apply text-6xl font-black mb-4 tracking-tight;
-}
-
-.title-man {
-  @apply text-white;
-}
-
-.title-tech {
-  @apply text-red-600;
-  text-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
-}
-
-.subtitle-wrapper {
-  @apply flex items-center justify-center gap-4 mt-6;
-}
-
-.subtitle-line {
-  @apply w-12 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent;
-}
-
-.subtitle {
-  @apply text-slate-400 text-xs font-bold tracking-[0.3em] uppercase;
-}
-
-/* ===== LOGIN CARD ===== */
-.login-card {
-  @apply w-full max-w-md bg-slate-900/50 backdrop-blur-2xl rounded-3xl overflow-hidden relative;
-  @apply border border-slate-700/50;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(220, 38, 38, 0.1);
-  animation: slideInUp 1s ease-out 0.2s both;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card-border-top {
-  @apply h-1 w-full bg-gradient-to-r from-red-600 via-red-500 to-red-600;
-  animation: shimmer 3s ease-in-out infinite;
-  background-size: 200% 100%;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.card-inner {
-  @apply p-10;
-}
-
-/* ===== SECURITY HEADER ===== */
-.security-header {
-  @apply flex items-center justify-between mb-8 p-4 bg-slate-950/50 rounded-xl;
-  @apply border border-emerald-500/20;
-}
-
-.security-status {
-  @apply flex items-center gap-3;
-}
-
-.status-pulse-container {
-  @apply relative flex items-center justify-center w-5 h-5;
-}
-
-.status-dot {
-  @apply absolute w-2.5 h-2.5 bg-emerald-400 rounded-full;
-}
-
-.status-pulse {
-  @apply absolute w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping;
-}
-
-.security-text {
-  @apply text-xs font-extrabold text-emerald-300 tracking-wide;
-}
-
-.security-level {
-  @apply flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 rounded-lg border border-emerald-500/30;
-}
-
-/* ===== FORM ===== */
-.form-container {
-  @apply space-y-6;
-}
-
-.input-group {
-  @apply space-y-3;
-}
-
-.input-label {
-  @apply flex items-center gap-1 text-sm font-bold text-slate-300 tracking-wide uppercase;
-}
-
-.label-required {
-  @apply text-red-500 text-base;
-}
-
-.input-wrapper {
-  @apply relative;
-}
-
-.input-icon-wrapper {
-  @apply absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none z-10;
-}
-
-.input-icon {
-  @apply w-5 h-5 text-slate-500;
-  transition: all 0.3s ease;
-}
-
-.form-control {
-  @apply w-full bg-slate-950/70 text-white placeholder-slate-600;
-  @apply border-2 border-slate-700 rounded-xl;
-  @apply pl-12 pr-4 py-4 text-base;
-  @apply outline-none transition-all duration-300;
-  font-weight: 500;
-}
-
-.form-control:focus {
-  @apply border-red-600 bg-slate-950/90;
-}
-
-.form-control:focus ~ .input-border-glow {
-  @apply opacity-100;
-}
-
-.form-control:focus + .input-icon-wrapper .input-icon {
-  @apply text-red-500;
-}
-
-.input-border-glow {
-  @apply absolute inset-0 rounded-xl opacity-0 pointer-events-none transition-opacity duration-300;
-  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
-}
-
-/* ===== FORM OPTIONS ===== */
-.form-options {
-  @apply flex items-center justify-between pt-2;
-}
-
-.remember-checkbox {
-  @apply flex items-center gap-2.5 cursor-pointer group;
-}
-
-.checkbox-input {
-  @apply sr-only;
-}
-
-.checkbox-custom {
-  @apply w-5 h-5 rounded border-2 border-slate-600 bg-slate-950/70;
-  @apply flex items-center justify-center transition-all duration-300;
-  @apply group-hover:border-red-500;
-}
-
-.checkbox-input:checked + .checkbox-custom {
-  @apply bg-red-600 border-red-600;
-}
-
-.checkbox-input:checked + .checkbox-custom::after {
-  content: '✓';
-  @apply text-white text-xs font-bold;
-}
-
-.checkbox-label {
-  @apply text-sm text-slate-400 font-medium group-hover:text-slate-300 transition-colors;
-}
-
-.recovery-link {
-  @apply text-sm text-red-500 hover:text-red-400 font-semibold;
-  @apply flex items-center gap-1 transition-all duration-300;
-  @apply hover:gap-2;
-}
-
-/* ===== SUBMIT BUTTON ===== */
-.submit-button {
-  @apply relative w-full mt-8 py-4 px-6 rounded-xl overflow-hidden;
-  @apply font-bold text-base tracking-wider uppercase;
-  @apply transform transition-all duration-300;
-  @apply hover:scale-[1.02] active:scale-[0.98];
-}
-
-.button-bg {
-  @apply absolute inset-0 bg-gradient-to-r from-red-600 via-red-700 to-red-600;
-  @apply transition-all duration-500;
-  background-size: 200% 100%;
-}
-
-.submit-button:hover .button-bg {
-  background-position: 100% 0;
-  box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
-}
-
-.button-text {
-  @apply relative flex items-center justify-center gap-3 text-white;
-}
-
-.button-icon {
-  @apply w-5 h-5;
-}
-
-/* ===== DIVIDER ===== */
-.divider-container {
-  @apply flex items-center gap-4 my-8;
-}
-
-.divider-line {
-  @apply flex-1 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent;
-}
-
-.divider-text {
-  @apply text-xs font-bold text-slate-600 tracking-widest uppercase whitespace-nowrap;
-}
-
-/* ===== CARD FOOTER ===== */
-.card-footer {
-  @apply flex items-center justify-center gap-4 pt-6;
-}
-
-.footer-item {
-  @apply flex items-center gap-2;
-}
-
-.footer-link {
-  @apply text-sm text-slate-500 hover:text-red-500 font-medium transition-colors;
-}
-
-.footer-separator {
-  @apply w-px h-4 bg-slate-700;
-}
-
-/* ===== BOTTOM INFO ===== */
-.bottom-info {
-  @apply mt-8 text-center space-y-3;
-  animation: fadeIn 1s ease-out 0.8s both;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.info-badge {
-  @apply inline-flex items-center gap-2 px-4 py-2 bg-slate-900/50 border border-slate-700/50 rounded-full;
-  @apply text-xs font-semibold text-slate-400;
-}
-
-.copyright {
-  @apply text-xs text-slate-600 font-medium;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 640px) {
-  .company-title {
-    @apply text-5xl;
-  }
-  
-  .card-inner {
-    @apply p-6;
-  }
-  
-  .shield-icon {
-    @apply w-20 h-20;
-  }
-  
-  .form-control {
-    @apply py-3.5 text-sm;
-  }
-  
-  .subtitle-wrapper {
-    @apply gap-3;
-  }
-  
-  .subtitle-line {
-    @apply w-8;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManTech International - Secure Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="login-wrapper">
+            
+            <!-- Header Section -->
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1>ManTech</h1>
+                    <h2>International Corporation</h2>
+                </div>
+                <p class="tagline">Mission-Critical Solutions & Advanced Technology</p>
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Enterprise Security Portal</span>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form">
+                <form id="loginForm">
+                    <div class="form-header">
+                        <h3>Secure Access</h3>
+                        <p>Sign in to your ManTech account</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-user"></i>
+                            Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                        >
+                        <div class="input-border"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                            >
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="passwordIcon"></i>
+                            </button>
+                        </div>
+                        <div class="input-border"></div>
+                    </div>
+
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">Sign In Securely</span>
+                        <i class="fas fa-arrow-right btn-icon"></i>
+                        <div class="btn-loader">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+
+                    <div class="sso-options">
+                        <button type="button" class="sso-btn microsoft">
+                            <i class="fab fa-microsoft"></i>
+                            <span>Microsoft 365</span>
+                        </button>
+                        <button type="button" class="sso-btn cac">
+                            <i class="fas fa-id-card"></i>
+                            <span>CAC/PIV</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Security Notice -->
+                <div class="security-notice">
+                    <i class="fas fa-shield-check"></i>
+                    <div class="notice-content">
+                        <h4>Security Notice</h4>
+                        <p>This system is for authorized ManTech personnel only. All activities are monitored and logged.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="support-info">
+                    <p>Need help? Contact <a href="mailto:support@mantech.com">IT Support</a></p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="#">Terms of Service</a>
+                    <span>•</span>
+                    <a href="#">Security</a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2024 ManTech International Corporation. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Password toggle functionality
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.classList.remove('fa-eye');
+                passwordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.classList.remove('fa-eye-slash');
+                passwordIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.login-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnIcon = submitBtn.querySelector('.btn-icon');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            btnText.style.opacity = '0';
+            btnIcon.style.opacity = '0';
+            btnLoader.style.opacity = '1';
+            
+            // Simulate authentication
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                btnText.style.opacity = '1';
+                btnIcon.style.opacity = '1';
+                btnLoader.style.opacity = '0';
+                
+                // Show success or redirect
+                alert('Login functionality would be implemented here');
+            }, 2000);
+        });
+
+        // Input focus animations
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+
+            // Check if input has value on load
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+
+        // Add page load animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

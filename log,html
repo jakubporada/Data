@@ -1,277 +1,172 @@
-/* ManTech Login Page - Additional CSS for Angular Integration */
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-/* CSS Custom Properties for ManTech Brand Colors */
-:root {
-  --mantech-primary: #003366;
-  --mantech-secondary: #0066cc;
-  --mantech-accent: #28a745;
-  --mantech-gray-light: #f8f9fa;
-  --mantech-gray-dark: #6c757d;
-  --mantech-success: #28a745;
-  --mantech-warning: #ffc107;
-  --mantech-danger: #dc3545;
-  --mantech-info: #17a2b8;
-}
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  isLoading = false;
+  showPassword = false;
+  errorMessage = '';
+  successMessage = '';
 
-/* Angular Component Specific Styles */
-.mantech-login-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--mantech-primary) 0%, var(--mantech-secondary) 100%);
-  font-family: 'Inter', system-ui, sans-serif;
-}
-
-/* Form Validation States for Angular Reactive Forms */
-.ng-invalid.ng-touched {
-  border-color: var(--mantech-danger) !important;
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important;
-}
-
-.ng-valid.ng-touched {
-  border-color: var(--mantech-success) !important;
-  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2) !important;
-}
-
-/* Error Message Styles */
-.error-message {
-  color: var(--mantech-danger);
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  animation: slideDown 0.3s ease-out;
-}
-
-.error-message i {
-  margin-right: 0.5rem;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+    // Add your authentication service here
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      rememberMe: [false]
+    });
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  ngOnInit(): void {
+    // Initialize any needed services or check if user is already logged in
+    this.initializeFloatingShapes();
   }
-}
 
-/* Success Message Styles */
-.success-message {
-  color: var(--mantech-success);
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  animation: slideDown 0.3s ease-out;
-}
+  // Form getters for easy access in template
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
 
-/* Loading States */
-.btn-loading {
-  position: relative;
-  pointer-events: none;
-  opacity: 0.8;
-}
-
-.btn-loading::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  margin: auto;
-  border: 2px solid transparent;
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Responsive Design Enhancements */
-@media (max-width: 768px) {
-  .mantech-login-container {
-    padding: 1rem;
+  // Toggle password visibility
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
-  
-  .login-form-container {
-    padding: 1.5rem;
-    margin: 0;
+
+  // Handle form submission
+  async onSubmit(): Promise<void> {
+    if (this.loginForm.valid && !this.isLoading) {
+      this.isLoading = true;
+      this.errorMessage = '';
+      this.successMessage = '';
+
+      try {
+        const credentials = {
+          email: this.email?.value,
+          password: this.password?.value,
+          rememberMe: this.loginForm.get('rememberMe')?.value
+        };
+
+        // Replace this with your actual authentication service call
+        const result = await this.authenticateUser(credentials);
+
+        if (result.success) {
+          this.successMessage = 'Login successful! Redirecting...';
+          
+          // Store auth token if needed
+          if (credentials.rememberMe) {
+            localStorage.setItem('rememberMe', 'true');
+          }
+
+          // Navigate to dashboard or intended route
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 1500);
+        } else {
+          this.errorMessage = result.message || 'Invalid credentials. Please try again.';
+        }
+      } catch (error) {
+        this.errorMessage = 'An error occurred during login. Please try again.';
+        console.error('Login error:', error);
+      } finally {
+        this.isLoading = false;
+      }
+    } else {
+      this.markFormGroupTouched();
+    }
   }
-  
-  .floating-shapes {
-    display: none; /* Hide floating shapes on mobile for performance */
+
+  // Handle SSO login methods
+  loginWithMicrosoft(): void {
+    // Implement Microsoft SSO login
+    console.log('Microsoft SSO login triggered');
+    // Add your Microsoft authentication logic here
   }
-}
 
-@media (max-width: 480px) {
-  .login-form-container {
-    padding: 1rem;
+  loginWithCAC(): void {
+    // Implement CAC/PIV card login
+    console.log('CAC/PIV login triggered');
+    // Add your CAC authentication logic here
   }
-  
-  .mantech-logo {
-    width: 3rem;
-    height: 3rem;
+
+  // Handle forgot password
+  onForgotPassword(): void {
+    // Navigate to forgot password page or open modal
+    this.router.navigate(['/forgot-password']);
   }
-  
-  .sso-buttons {
-    grid-template-columns: 1fr; /* Stack SSO buttons on very small screens */
-    gap: 0.75rem;
+
+  // Utility method to mark all form fields as touched
+  private markFormGroupTouched(): void {
+    Object.keys(this.loginForm.controls).forEach(key => {
+      const control = this.loginForm.get(key);
+      control?.markAsTouched();
+    });
   }
-}
 
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  .glass-effect {
-    background: rgba(255, 255, 255, 1);
-    border: 2px solid var(--mantech-primary);
+  // Mock authentication method - replace with your actual service
+  private async authenticateUser(credentials: any): Promise<{success: boolean, message?: string}> {
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Mock authentication logic - replace with actual API call
+    if (credentials.email === 'admin@mantech.com' && credentials.password === 'password123') {
+      return { success: true };
+    } else {
+      return { 
+        success: false, 
+        message: 'Invalid email or password. Please check your credentials and try again.' 
+      };
+    }
   }
-  
-  .login-gradient {
-    background: var(--mantech-primary);
+
+  // Initialize floating background shapes animation
+  private initializeFloatingShapes(): void {
+    // This could be enhanced with more complex animations
+    // For now, the CSS handles the basic floating animation
   }
-}
 
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-in,
-  .animate-slide-up,
-  .animate-pulse-subtle,
-  .floating-shapes,
-  .shape {
-    animation: none;
+  // Get error message for specific field
+  getFieldError(fieldName: string): string {
+    const field = this.loginForm.get(fieldName);
+    
+    if (field?.errors && field.touched) {
+      if (field.errors['required']) {
+        return `${this.capitalizeFirst(fieldName)} is required`;
+      }
+      if (field.errors['email']) {
+        return 'Please enter a valid email address';
+      }
+      if (field.errors['minlength']) {
+        return `${this.capitalizeFirst(fieldName)} must be at least ${field.errors['minlength'].requiredLength} characters`;
+      }
+    }
+    
+    return '';
   }
-  
-  .input-focus:focus,
-  .login-button:hover {
-    transform: none;
+
+  // Utility method to capitalize first letter
+  private capitalizeFirst(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
-}
 
-/* Dark Mode Support (if needed) */
-@media (prefers-color-scheme: dark) {
-  .glass-effect {
-    background: rgba(30, 30, 30, 0.95);
-    color: #ffffff;
+  // Handle enter key press
+  onEnterKey(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
   }
-  
-  .glass-effect input {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.3);
+
+  // Clear error message when user starts typing
+  onInputChange(): void {
+    if (this.errorMessage) {
+      this.errorMessage = '';
+    }
   }
-  
-  .glass-effect input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-  }
-}
-
-/* Print Styles (hide unnecessary elements when printing) */
-@media print {
-  .floating-shapes,
-  .security-badge,
-  .sso-buttons {
-    display: none;
-  }
-  
-  .mantech-login-container {
-    background: white;
-    color: black;
-  }
-}
-
-/* Focus Visible for Better Accessibility */
-*:focus-visible {
-  outline: 2px solid var(--mantech-secondary);
-  outline-offset: 2px;
-}
-
-/* Custom Scrollbar for Better UX */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--mantech-gray-light);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--mantech-gray-dark);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--mantech-primary);
-}
-
-/* Utility Classes for Angular Components */
-.mantech-btn-primary {
-  background-color: var(--mantech-primary);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.mantech-btn-primary:hover {
-  background-color: var(--mantech-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
-}
-
-.mantech-btn-secondary {
-  background-color: transparent;
-  color: var(--mantech-primary);
-  border: 2px solid var(--mantech-primary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.mantech-btn-secondary:hover {
-  background-color: var(--mantech-primary);
-  color: white;
-}
-
-/* Angular Material Integration Overrides (if using Angular Material) */
-.mat-form-field-appearance-fill .mat-form-field-flex {
-  border-radius: 0.5rem;
-}
-
-.mat-primary .mat-button-focus-overlay,
-.mat-primary .mat-button-ripple.mat-ripple-element {
-  background-color: var(--mantech-primary);
-}
-
-/* Toast/Snackbar Styles for notifications */
-.mantech-toast {
-  background: var(--mantech-primary);
-  color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.mantech-toast.success {
-  background: var(--mantech-success);
-}
-
-.mantech-toast.error {
-  background: var(--mantech-danger);
-}
-
-.mantech-toast.warning {
-  background: var(--mantech-warning);
-  color: #333;
 }

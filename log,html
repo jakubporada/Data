@@ -1,33 +1,63 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManTech Secure Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100">
+    <div class="w-full max-w-md bg-gray-900/70 backdrop-blur-md border border-gray-700 rounded-2xl shadow-2xl p-8">
+      <div class="text-center mb-8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/ManTech_Logo.png" alt="ManTech Logo" class="mx-auto w-32 mb-4" />
+        <h1 class="text-2xl font-semibold text-red-500">Secure Access Portal</h1>
+        <p class="text-sm text-gray-400 mt-2">Authorized Personnel Only</p>
+      </div>
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginComponent {
-  loginForm: FormGroup;
-  submitted = false;
+      <form>
+        <div class="mb-5">
+          <label for="email" class="block text-sm font-medium mb-2 text-gray-300">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@mantech.com"
+            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-500"
+            required
+          />
+        </div>
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-medium mb-2 text-gray-300">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent placeholder-gray-500"
+            required
+          />
+        </div>
 
-  get f() {
-    return this.loginForm.controls;
-  }
+        <div class="flex items-center justify-between mb-6">
+          <label class="flex items-center text-sm text-gray-400">
+            <input type="checkbox" class="mr-2 text-red-500 focus:ring-red-500 rounded" />
+            Remember me
+          </label>
+          <a href="#" class="text-sm text-red-400 hover:text-red-300">Forgot password?</a>
+        </div>
 
-  onSubmit() {
-    this.submitted = true;
+        <button
+          type="submit"
+          class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out"
+        >
+          Sign In
+        </button>
+      </form>
 
-    if (this.loginForm.invalid) return;
-
-    // For now, just log the form values
-    console.log('Login successful', this.loginForm.value);
-    alert(`Welcome, ${this.loginForm.value.username}!`);
-  }
-}
+      <div class="mt-8 text-center text-sm text-gray-500">
+        <p>Unauthorized access is prohibited by ManTech security policy.</p>
+      </div>
+    </div>
+  </body>
+</html>
